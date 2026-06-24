@@ -334,12 +334,16 @@ open my_species_plot.png
 The curve continues rising steeply. Each new genome adds substantial new genes.
 This is characteristic of environmentally diverse or highly recombinogenic species.
 
+![Open Pangenome](examples/toy_open_pangenome_plot.png)
+
 ![Open Pangenome](examples/toy_open_plot.png)
 
 ### Closed Pangenome (gamma = 0.067, R² = 0.975)
 
 The curve flattens quickly. After sampling most genomes, very few new genes are found.
 This is characteristic of obligate pathogens or highly conserved species.
+
+![Closed Pangenome](examples/toy_closed_pangenome_plot.png)
 
 ![Closed Pangenome](examples/toy_closed_plot.png)
 
