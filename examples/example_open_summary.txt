@@ -1,0 +1,20 @@
+PanGenome-Openness-Estimator v2.0.0
+==================================================
+
+Input file   : examples/toy_open_pangenome.tsv
+Genomes      : 10
+Genes        : 50
+Iterations   : 200
+Seed         : 42
+
+Model
+-----
+P(n) = k * n^gamma
+
+k            : 18.358537
+gamma        : 0.421302
+R_squared    : 0.988493
+
+Interpretation
+--------------
+Moderately open pangenome — new genes continue to appear at a decreasing rate.

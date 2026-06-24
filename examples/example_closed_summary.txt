@@ -1,0 +1,20 @@
+PanGenome-Openness-Estimator v2.0.0
+==================================================
+
+Input file   : examples/toy_closed_pangenome.tsv
+Genomes      : 10
+Genes        : 33
+Iterations   : 200
+Seed         : 42
+
+Model
+-----
+P(n) = k * n^gamma
+
+k            : 28.218168
+gamma        : 0.067008
+R_squared    : 0.975435
+
+Interpretation
+--------------
+Mostly closed / weakly open pangenome — gene discovery slows strongly.

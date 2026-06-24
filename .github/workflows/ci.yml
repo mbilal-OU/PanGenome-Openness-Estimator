@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.10", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Test syntax
+        run: |
+          python3 -m py_compile roary_heaps_law.py
+          python3 -m py_compile convert_roary_to_tsv.py
+
+      - name: Test version flag
+        run: python3 roary_heaps_law.py --version
+
+      - name: Run on open pangenome toy dataset
+        run: |
+          python3 roary_heaps_law.py \
+            examples/toy_open_pangenome.tsv \
+            --iterations 50 \
+            --seed 42 \
+            --output-prefix test_open
+          cat test_open_summary.txt
+
+      - name: Run on closed pangenome toy dataset
+        run: |
+          python3 roary_heaps_law.py \
+            examples/toy_closed_pangenome.tsv \
+            --iterations 50 \
+            --seed 42 \
+            --output-prefix test_closed
+          cat test_closed_summary.txt
+
+      - name: Test converter
+        run: |
+          python3 convert_roary_to_tsv.py \
+            examples/toy_open_pangenome.tsv \
+            converted_test.tsv
+          head -3 converted_test.tsv
