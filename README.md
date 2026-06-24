@@ -17,9 +17,9 @@
 - [Installation](#installation)
 - [Quick Start](#quick-start)
 - [Step-by-Step Guide](#step-by-step-guide)
-  - [Step 1 — Prepare your input](#step-1--prepare-your-input)
-  - [Step 2 — Run the analysis](#step-2--run-the-analysis)
-  - [Step 3 — Interpret your results](#step-3--interpret-your-results)
+  - [Step 1 - Prepare your input](#step-1--prepare-your-input)
+  - [Step 2 - Run the analysis](#step-2--run-the-analysis)
+  - [Step 3 - Interpret your results](#step-3--interpret-your-results)
 - [All Options](#all-options)
 - [Input Formats](#input-formats)
 - [Output Files](#output-files)
@@ -41,19 +41,19 @@ whether your pangenome is **open** or **closed**.
 Open pangenome:
     Each new genome adds many new genes.
     The pangenome keeps expanding.
-    Species is highly diverse — many unique genes per strain.
+    Species is highly diverse - many unique genes per strain.
 
 Closed pangenome:
     Each new genome adds very few new genes.
     The pangenome curve flattens quickly.
-    Species is conserved — strains share most genes.
+    Species is conserved - strains share most genes.
 ```
 
 This tool:
 1. Takes your Roary output (or any 0/1 gene matrix)
 2. Randomly permutes genome order hundreds of times
 3. Computes the mean accumulation curve
-4. Fits Heaps' law to estimate **gamma** — the openness exponent
+4. Fits Heaps' law to estimate **gamma** - the openness exponent
 5. Generates a publication-ready accumulation plot
 
 ---
@@ -68,7 +68,7 @@ P(n) = k × n^gamma
 |---|---|
 | `P(n)` | Cumulative pangenome size after sampling `n` genomes |
 | `k` | Scaling constant |
-| `gamma` | Openness exponent — the key result |
+| `gamma` | Openness exponent - the key result |
 | `R²` | Goodness of fit (closer to 1.0 = better fit) |
 
 > **Important:** Some papers and tools report `alpha = 1 - gamma`. Always check
@@ -78,7 +78,7 @@ P(n) = k × n^gamma
 
 ## Installation
 
-### Option 1 — pip (recommended)
+### Option 1 - pip (recommended)
 
 ```bash
 git clone https://github.com/mbilal-OU/PanGenome-Openness-Estimator.git
@@ -86,7 +86,7 @@ cd PanGenome-Openness-Estimator
 pip install -r requirements.txt
 ```
 
-### Option 2 — conda
+### Option 2 - conda
 
 ```bash
 conda install -c conda-forge numpy pandas scipy matplotlib
@@ -128,11 +128,11 @@ python3 roary_heaps_law.py gene_presence_absence.csv \
 
 ## Step-by-Step Guide
 
-### Step 1 — Prepare your input
+### Step 1 - Prepare your input
 
 **If you have Roary output:**
 Roary produces `gene_presence_absence.csv` automatically.
-This script reads it directly — no conversion needed.
+This script reads it directly - no conversion needed.
 
 ```bash
 ls your_roary_output/
@@ -165,7 +165,7 @@ python3 convert_roary_to_tsv.py \
 
 ---
 
-### Step 2 — Run the analysis
+### Step 2 - Run the analysis
 
 ```bash
 python3 roary_heaps_law.py <input_file> [options]
@@ -198,7 +198,7 @@ python3 roary_heaps_law.py gene_presence_absence.csv \
 
 ---
 
-### Step 3 — Interpret your results
+### Step 3 - Interpret your results
 
 After running, check your `*_summary.txt` file:
 
@@ -221,7 +221,7 @@ R_squared    : 0.998700
 
 Interpretation
 --------------
-Moderately open pangenome — new genes continue to appear at a decreasing rate.
+Moderately open pangenome - new genes continue to appear at a decreasing rate.
 ```
 
 The key number is **gamma**. See the [Gamma Interpretation Guide](#gamma-interpretation-guide) below.
@@ -251,7 +251,7 @@ Optional arguments:
 
 ## Input Formats
 
-### Format 1 — Roary gene_presence_absence.csv (auto-detected)
+### Format 1 - Roary gene_presence_absence.csv (auto-detected)
 
 ```
 "Gene","Non-unique Gene name","Annotation","No. isolates",...,"Genome_1","Genome_2"
@@ -261,7 +261,7 @@ Optional arguments:
 
 The script automatically detects Roary format and converts presence strings to 0/1 internally.
 
-### Format 2 — Simple 0/1 TSV
+### Format 2 - Simple 0/1 TSV
 
 ```
 Gene    Genome_A    Genome_B    Genome_C    Genome_D
@@ -298,21 +298,21 @@ gene3   0           1           1           0
 Complete workflow from Roary output to published result:
 
 ```bash
-# Step 1 — Run Roary (if not done yet)
+# Step 1 - Run Roary (if not done yet)
 roary -e -n -i 95 -cd 99 -p 8 gff_files/*.gff -f roary_output/
 
-# Step 2 — Run pangenome openness estimation
+# Step 2 - Run pangenome openness estimation
 python3 roary_heaps_law.py \
     roary_output/gene_presence_absence.csv \
     --iterations 1000 \
     --seed 42 \
     --output-prefix my_species \
-    --title "My Species — Pangenome Accumulation Curve"
+    --title "My Species - Pangenome Accumulation Curve"
 
-# Step 3 — Check results
+# Step 3 - Check results
 cat my_species_summary.txt
 
-# Step 4 — View plot
+# Step 4 - View plot
 open my_species_plot.png
 ```
 
@@ -352,7 +352,7 @@ This is characteristic of obligate pathogens or highly conserved species.
 ## Gamma Interpretation Guide
 
 These ranges are practical guidelines used across the pangenomics literature.
-They are not universal biological laws — always consider your biological context.
+They are not universal biological laws - always consider your biological context.
 
 | Gamma | Classification | Example organisms |
 |---|---|---|
@@ -430,4 +430,4 @@ Rochester, Michigan, USA
 
 ## License
 
-MIT License — free to use, modify, and distribute with attribution.
+MIT License - free to use, modify, and distribute with attribution.
