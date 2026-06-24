@@ -1,0 +1,16 @@
+Gene	Genome_A	Genome_B	Genome_C	Genome_D	Genome_E
+gene_001	1	1	1	1	1
+gene_002	1	1	1	1	1
+gene_003	1	1	1	1	1
+gene_004	1	1	1	1	1
+gene_005	1	1	1	1	1
+gene_006	1	1	1	1	1
+gene_007	1	1	1	1	1
+gene_008	1	1	1	1	1
+gene_009	1	1	1	1	0
+gene_010	1	1	1	0	1
+gene_011	1	1	0	1	0
+gene_012	1	0	1	0	0
+gene_013	0	1	0	0	1
+gene_014	0	0	1	0	0
+gene_015	0	0	0	1	0

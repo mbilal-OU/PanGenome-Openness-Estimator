@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*_raw_accumulation.csv
+*_mean_accumulation.csv
+*_summary.txt
+*_plot.png
